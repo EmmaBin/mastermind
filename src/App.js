@@ -7,6 +7,8 @@ function App() {
   const [currentRound, setCurrentRound] = React.useState(0)
   const [difficultyLevel, setLevel] = React.useState(4)
   const [formDetail, setFormDetail] = React.useState([])
+
+
   // when submit -> 1. create a new arr like [1,3,4,5]
   // 2. push to formDetail Array
   // 3. check against secretCodes -> a new function needed here
@@ -25,6 +27,7 @@ function App() {
     setCurrentRound((prev) => prev + 1)
     const { correctNumber, correctLocation } = checkAgainstCodes(currentGuess, secretCodes)
     console.log("correct number is", correctNumber, "correct Location", correctLocation)
+    return ({ correctLocation, correctNumber })
 
 
   }
