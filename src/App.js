@@ -7,6 +7,7 @@ function App() {
   const [currentRound, setCurrentRound] = React.useState(0)
   const [difficultyLevel, setLevel] = React.useState(4)
   const [formDetail, setFormDetail] = React.useState([])
+  const [stillGoing, setStillGoing] = React.useState(true)
 
 
   // when submit -> 1. create a new arr like [1,3,4,5]
@@ -14,6 +15,9 @@ function App() {
   // 3. check against secretCodes -> a new function needed here
   // 4. display feedback
   // 5. check game condition to determine if the game is still going
+
+
+  //if win the game -> 
   function handleSubmit(e) {
     e.preventDefault()
 
@@ -27,9 +31,19 @@ function App() {
       const { correctNumber, correctLocation } = checkAgainstCodes(currentGuess, secretCodes)
       console.log("correct number is", correctNumber, "correct Location", correctLocation)
       console.log(formDetail)
+
+      checkWinningCondition(correctLocation)
       return ({ correctLocation, correctNumber })
     }
   }
+
+  function checkWinningCondition(correctLocation) {
+    if (correctLocation === 4) {
+      setStillGoing(false)
+      setCurrentRound(-1)
+    }
+  }
+
   function checkAgainstCodes(currentGuess, secretCodes) {
     let correctNumber = 0
     let correctLocation = 0
@@ -60,7 +74,6 @@ function App() {
     //   }
     // }
 
-
     return { correctNumber, correctLocation }
   }
 
@@ -79,8 +92,18 @@ function App() {
   return (
     <div className="App">
       <h1>Mastermind Game ⏳</h1>
-      <h2>{secretCodes}</h2>
-      {Array.from({ length: 10 }, (_, index) => <InputForm key={index} difficultyLevel={difficultyLevel} currentRound={currentRound} handleSubmit={handleSubmit} index={index} />)}
+      {!stillGoing && <>You won! Our secret code is {secretCodes}</>}
+      {formDetail.length === 10 && stillGoing && <>You lost! Our secret code is {secretCodes}</>}
+      {/* <h2>{secretCodes}</h2> */}
+      {Array.from({ length: 10 }, (_, index) => <InputForm
+        key={index}
+        difficultyLevel={difficultyLevel}
+        currentRound={currentRound}
+        handleSubmit={handleSubmit}
+        index={index}
+        stillGoing={stillGoing} />)}
+
+
 
     </div>
   );
