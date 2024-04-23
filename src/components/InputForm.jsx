@@ -23,11 +23,11 @@ export default function InputForm({ index, handleSubmit, currentRound, difficult
                 <label>{index + 1}. Type Your Guess Here: </label>
                 {Array.from({ length: difficultyLevel }, (_, i) => <input key={i} type="number" min={0} max={7} name={i} required disabled={isDisabled} />)
                 }
-                <button type="submit" onSubmit={() => setShowResult(true)}>Submit</button>
+                <button type="submit" onSubmit={() => setShowResult(true)} disabled={isDisabled}>Submit</button>
                 <div> {showResult ?
-                    <h8>
+                    <h5>
                         You have {correctNumber} correct numbers and {correctLocation} correct locations
-                    </h8> : null}</div>
+                    </h5> : null}</div>
 
             </form >
 

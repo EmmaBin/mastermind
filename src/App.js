@@ -20,16 +20,15 @@ function App() {
     const newForm = new FormData(e.target)
     // using ... turn the iterators into arr
     const currentGuess = [...newForm.values()]
-    setFormDetail((prev) => [...prev, [currentGuess]])
-
-
     //if previous round is not being answered/checked, user should not go to next round
-    setCurrentRound((prev) => prev + 1)
-    const { correctNumber, correctLocation } = checkAgainstCodes(currentGuess, secretCodes)
-    console.log("correct number is", correctNumber, "correct Location", correctLocation)
-    return ({ correctLocation, correctNumber })
-
-
+    if (currentGuess.length === difficultyLevel) {
+      setFormDetail((prev) => [...prev, [currentGuess]])
+      setCurrentRound((prev) => prev + 1)
+      const { correctNumber, correctLocation } = checkAgainstCodes(currentGuess, secretCodes)
+      console.log("correct number is", correctNumber, "correct Location", correctLocation)
+      console.log(formDetail)
+      return ({ correctLocation, correctNumber })
+    }
   }
   function checkAgainstCodes(currentGuess, secretCodes) {
     let correctNumber = 0
