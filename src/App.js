@@ -7,7 +7,7 @@ function App() {
   const [currentRound, setCurrentRound] = React.useState(0)
   const [difficultyLevel, setLevel] = React.useState(4)
   const [formDetail, setFormDetail] = React.useState([])
-  // when submit -> 1. create a new form object in the format of { index: 0, value: [1, 2, 3] }
+  // when submit -> 1. create a new arr like [1,3,4,5]
   // 2. push to formDetail Array
   // 3. check against secretCodes -> a new function needed here
   // 4. display feedback
@@ -16,7 +16,10 @@ function App() {
     e.preventDefault()
 
     const newForm = new FormData(e.target)
+    setFormDetail((prev) => [...prev, ...newForm.values()])
     console.log(...newForm.values())
+    console.log("all form data", formDetail)
+    setCurrentRound((prev) => prev + 1)
 
 
   }
