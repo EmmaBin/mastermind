@@ -16,12 +16,50 @@ function App() {
     e.preventDefault()
 
     const newForm = new FormData(e.target)
-    setFormDetail((prev) => [...prev, ...newForm.values()])
-    console.log(...newForm.values())
-    console.log("all form data", formDetail)
+    // using ... turn the iterators into arr
+    const currentGuess = [...newForm.values()]
+    setFormDetail((prev) => [...prev, [currentGuess]])
+
+
+    //if previous round is not being answered/checked, user should not go to next round
     setCurrentRound((prev) => prev + 1)
+    const { correctNumber, correctLocation } = checkAgainstCodes(currentGuess, secretCodes)
+    console.log("correct number is", correctNumber, "correct Location", correctLocation)
 
 
+  }
+  function checkAgainstCodes(currentGuess, secretCodes) {
+    let correctNumber = 0
+    let correctLocation = 0
+    let tempDict = {}
+
+    for (const number of secretCodes) {
+      tempDict[number] = 0
+    }
+    for (const number of secretCodes) {
+      tempDict[number]++
+    }
+
+    for (let i = 0; i < currentGuess.length; i++) {
+      const currentNumber = currentGuess[i]
+      if (currentNumber in tempDict && tempDict[currentNumber] > 0) {
+        correctNumber++;
+        tempDict[currentNumber]--
+      }
+
+      if (currentNumber === secretCodes[i]) {
+        correctLocation++
+      }
+    }
+
+    // for (let i = 0; i < difficultyLevel; i++) {
+    //   if (currentGuess[i] === secretCodes[i]) {
+    //     correctLocation++
+    //   }
+    // }
+
+
+    return { correctNumber, correctLocation }
   }
 
   React.useEffect(() => {
@@ -41,12 +79,6 @@ function App() {
       <h1>Mastermind Game ⏳</h1>
       <h2>{secretCodes}</h2>
       {Array.from({ length: 10 }, (_, index) => <InputForm key={index} difficultyLevel={difficultyLevel} currentRound={currentRound} handleSubmit={handleSubmit} index={index} />)}
-
-
-
-
-
-
 
     </div>
   );
