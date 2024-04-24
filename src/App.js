@@ -41,7 +41,7 @@ function App() {
     dispatch({ type: "reset" });
     document.querySelectorAll(".inputField").forEach((input) => input.value = null)
     setStillGoing(true)
-    console.log("here is restart", formDetail)
+
   }
 
   function handleSubmit(e) {
@@ -70,7 +70,10 @@ function App() {
       setCurrentRound(-1)
     }
   }
-
+  function handleSetLevel(level) {
+    setLevel(prev => level)
+    handleRestart()
+  }
   function checkAgainstCodes(currentGuess, secretCodes) {
     let correctNumber = 0
     let correctLocation = 0
@@ -116,11 +119,15 @@ function App() {
     }
     fetchData()
 
-  }, [restart])
+  }, [restart, difficultyLevel])
 
   return (
     <div className="App">
       <h1>Mastermind Game ⏳</h1>
+      <div>
+        <button onClick={() => handleSetLevel(4)}>Normal</button>
+        <button onClick={() => handleSetLevel(6)}>Hard</button>
+      </div>
       <button onClick={handleRestart}>Restart Game</button>
       <div>{!stillGoing && <>You won! Our secret code is {secretCodes}</>}</div>
       <div>{formDetail.length === 10 && stillGoing && <>You lost! Our secret code is {secretCodes}</>}</div>
