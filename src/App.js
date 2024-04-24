@@ -15,7 +15,8 @@ function App() {
   //track least time used on different levels,
   //how to play instructions
   //music
-  // number(s) location(s)
+  //number(s) location(s)
+  //testing
   const reducer = (formDetail, action) => {
     if (action.type === "reset") {
       return [];
@@ -65,7 +66,7 @@ function App() {
   }
 
   function checkWinningCondition(correctLocation) {
-    if (correctLocation === 4) {
+    if (correctLocation === difficultyLevel) {
       setStillGoing(false)
       setCurrentRound(-1)
     }
@@ -110,6 +111,7 @@ function App() {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true)
         const codes = await getCodes(difficultyLevel)
         setSecretCodes(codes)
         setLoading(false)
@@ -123,16 +125,19 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Mastermind Game ⏳</h1>
-      <div>
-        <button onClick={() => handleSetLevel(4)}>Normal</button>
-        <button onClick={() => handleSetLevel(6)}>Hard</button>
+      <h1 className='nav'>Mastermind Game ⏳</h1>
+      <div className="btns">
+        <button className="restart-btn" onClick={handleRestart}>Restart Game</button>
+        <div className='level-btns'>
+          <button onClick={() => handleSetLevel(4)}>Normal</button>
+          <button onClick={() => handleSetLevel(6)}>Hard</button>
+        </div>
       </div>
-      <button onClick={handleRestart}>Restart Game</button>
+
       <div>{!stillGoing && <>You won! Our secret code is {secretCodes}</>}</div>
       <div>{formDetail.length === 10 && stillGoing && <>You lost! Our secret code is {secretCodes}</>}</div>
       <h2>{secretCodes}</h2>
-      {loading ? <>Loading</> :
+      {loading ? <h2 className='loading'>Loading...</h2> :
 
         Array.from({ length: 10 }, (_, index) => <InputForm
           key={index}
