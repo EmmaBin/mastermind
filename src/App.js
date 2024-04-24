@@ -7,6 +7,7 @@ function App() {
   const [currentRound, setCurrentRound] = React.useState(0)
   const [difficultyLevel, setLevel] = React.useState(4)
   const [stillGoing, setStillGoing] = React.useState(true)
+  const [loading, setLoading] = React.useState(true)
 
   //todo: a restart btn to trigger new game --> new api call, empty form
   //adjust difficulty levels, more input field
@@ -39,6 +40,7 @@ function App() {
     setCurrentRound(0)
     dispatch({ type: "reset" });
     document.querySelectorAll(".inputField").forEach((input) => input.value = null)
+    setStillGoing(true)
     console.log("here is restart", formDetail)
   }
 
@@ -107,29 +109,34 @@ function App() {
       try {
         const codes = await getCodes(difficultyLevel)
         setSecretCodes(codes)
+        setLoading(false)
       } catch (error) {
         console.log(error.message)
       }
     }
     fetchData()
+
   }, [restart])
 
   return (
     <div className="App">
       <h1>Mastermind Game ⏳</h1>
       <button onClick={handleRestart}>Restart Game</button>
-      {!stillGoing && <>You won! Our secret code is {secretCodes}</>}
-      {formDetail.length === 10 && stillGoing && <>You lost! Our secret code is {secretCodes}</>}
+      <div>{!stillGoing && <>You won! Our secret code is {secretCodes}</>}</div>
+      <div>{formDetail.length === 10 && stillGoing && <>You lost! Our secret code is {secretCodes}</>}</div>
       <h2>{secretCodes}</h2>
-      {Array.from({ length: 10 }, (_, index) => <InputForm
-        key={index}
-        difficultyLevel={difficultyLevel}
-        currentRound={currentRound}
-        handleSubmit={handleSubmit}
-        index={index}
-        stillGoing={stillGoing} />)}
+      {loading ? <>Loading</> :
 
+        Array.from({ length: 10 }, (_, index) => <InputForm
+          key={index}
+          loading={loading}
+          difficultyLevel={difficultyLevel}
+          currentRound={currentRound}
+          handleSubmit={handleSubmit}
+          index={index}
+          stillGoing={stillGoing} />)
 
+      }
 
     </div>
   );

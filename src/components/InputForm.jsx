@@ -31,9 +31,6 @@ export default function InputForm({ index, handleSubmit, currentRound, difficult
                     </h5> : null}</div>
 
             </form >
-
-
         </div >
-
     )
 }
