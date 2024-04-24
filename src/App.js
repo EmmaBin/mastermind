@@ -6,7 +6,6 @@ function App() {
   const [secretCodes, setSecretCodes] = React.useState([])
   const [currentRound, setCurrentRound] = React.useState(0)
   const [difficultyLevel, setLevel] = React.useState(4)
-  // const [formDetail, setFormDetail] = React.useState([])
   const [stillGoing, setStillGoing] = React.useState(true)
 
   //todo: a restart btn to trigger new game --> new api call, empty form
@@ -39,6 +38,7 @@ function App() {
     setRestart((prev) => !prev)
     setCurrentRound(0)
     dispatch({ type: "reset" });
+    document.querySelectorAll(".inputField").forEach((input) => input.value = null)
     console.log("here is restart", formDetail)
   }
 
@@ -55,7 +55,7 @@ function App() {
       setCurrentRound((prev) => prev + 1)
       const { correctNumber, correctLocation } = checkAgainstCodes(currentGuess, secretCodes)
       console.log("correct number is", correctNumber, "correct Location", correctLocation)
-      console.log(formDetail)
+
 
       checkWinningCondition(correctLocation)
       return ({ correctLocation, correctNumber })
