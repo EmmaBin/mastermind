@@ -6,8 +6,27 @@ function App() {
   const [secretCodes, setSecretCodes] = React.useState([])
   const [currentRound, setCurrentRound] = React.useState(0)
   const [difficultyLevel, setLevel] = React.useState(4)
-  const [formDetail, setFormDetail] = React.useState([])
+  // const [formDetail, setFormDetail] = React.useState([])
   const [stillGoing, setStillGoing] = React.useState(true)
+
+  //todo: a restart btn to trigger new game --> new api call, empty form
+  //adjust difficulty levels, more input field
+  //basic UI, bold on hints
+  //track least time used on different levels,
+  //how to play instructions
+  //music
+  // number(s) location(s)
+  const reducer = (formDetail, action) => {
+    if (action.type === "reset") {
+      return [];
+    }
+    if (action.type === "append") {
+      return [...formDetail, [action.currentGuess]]
+    }
+  };
+  const [restart, setRestart] = React.useState(false)
+  const [formDetail, dispatch] = React.useReducer(reducer, []);
+
 
 
   // when submit -> 1. create a new arr like [1,3,4,5]
@@ -16,8 +35,13 @@ function App() {
   // 4. display feedback
   // 5. check game condition to determine if the game is still going
 
+  function handleRestart() {
+    setRestart((prev) => !prev)
+    setCurrentRound(0)
+    dispatch({ type: "reset" });
+    console.log("here is restart", formDetail)
+  }
 
-  //if win the game -> 
   function handleSubmit(e) {
     e.preventDefault()
 
@@ -26,7 +50,8 @@ function App() {
     const currentGuess = [...newForm.values()]
     //if previous round is not being answered/checked, user should not go to next round
     if (currentGuess.length === difficultyLevel) {
-      setFormDetail((prev) => [...prev, [currentGuess]])
+      dispatch({ type: "append", currentGuess: currentGuess })
+      // setFormDetail((prev) => [...prev, [currentGuess]])
       setCurrentRound((prev) => prev + 1)
       const { correctNumber, correctLocation } = checkAgainstCodes(currentGuess, secretCodes)
       console.log("correct number is", correctNumber, "correct Location", correctLocation)
@@ -87,14 +112,15 @@ function App() {
       }
     }
     fetchData()
-  }, [])
+  }, [restart])
 
   return (
     <div className="App">
       <h1>Mastermind Game ⏳</h1>
+      <button onClick={handleRestart}>Restart Game</button>
       {!stillGoing && <>You won! Our secret code is {secretCodes}</>}
       {formDetail.length === 10 && stillGoing && <>You lost! Our secret code is {secretCodes}</>}
-      {/* <h2>{secretCodes}</h2> */}
+      <h2>{secretCodes}</h2>
       {Array.from({ length: 10 }, (_, index) => <InputForm
         key={index}
         difficultyLevel={difficultyLevel}
