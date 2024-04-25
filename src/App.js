@@ -108,7 +108,8 @@ function App() {
       <div className="btns">
         <button className="restart-btn" onClick={handleRestart}>Restart Game</button>
         <div className='level-btns'>
-          <button onClick={() => handleSetLevel(4)}>Normal</button>
+          <button onClick={() => handleSetLevel(4)}>Easy</button>
+          <button onClick={() => handleSetLevel(5)}>Medium</button>
           <button onClick={() => handleSetLevel(6)}>Hard</button>
         </div>
       </div>

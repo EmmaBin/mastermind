@@ -82,4 +82,8 @@ h1 {
 .rule {
   width: 70%;
   margin: 0 auto;
+  background-color: #13678A;
+  border-radius: 5px;
+  color: wheat;
+  padding: 15px;
 }
