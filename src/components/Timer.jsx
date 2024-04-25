@@ -18,7 +18,7 @@ export default function Timer({ restart }) {
     return (
         <div>
 
-            {minute}:{second}
+            {String(minute).padStart(2, '0')}:{second > 60 ? String(second % 60).padStart(2, '0') : String(second).padStart(2, '0')}
         </div>
     )
 }
