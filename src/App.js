@@ -101,7 +101,7 @@ function App() {
       <div className='nav'>
         <button className='rule-btn' onClick={() => setGameRule((prev) => !prev)}>{gameRule ? "HIDE RULE" : "GAME RULE"}</button>
         <h1>Mastermind Game ⏳</h1>
-        <Timer />
+        <Timer restart={restart} />
       </div>
 
 
