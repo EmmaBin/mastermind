@@ -7,6 +7,8 @@
   background-color: #DAFDBA;
   padding: 1rem;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-around
 }
 
 h1 {
@@ -22,10 +24,24 @@ h1 {
   border-radius: 30px;
   padding: 8px 10px;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .btns button:hover {
   cursor: pointer;
+}
+
+.rule-btn {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  background: none;
+  color: #13678A;
+  border: 1px solid #13678A;
+  border-radius: 30px;
+  cursor: pointer;
+  padding: 8px 10px;
+  text-decoration: none;
+
 }
 
 .restart-btn {
@@ -35,7 +51,7 @@ h1 {
   color: #13678A;
   border: 1px solid #13678A;
   border-radius: 30px;
-
+  text-transform: uppercase;
   padding: 8px 10px;
   text-decoration: none;
 }
@@ -60,4 +76,14 @@ h1 {
 .number {
   font-weight: 600;
   color: #13678A;
+}
+
+/* game rule component */
+.rule {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.text-shadow {
+  text-shadow: black 0 -1px;
 }

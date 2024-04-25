@@ -2,12 +2,15 @@ import './App.css';
 import * as React from 'react';
 import getCodes from './utils/getCodes';
 import InputForm from './components/InputForm';
+import Timer from './components/Timer';
+import GameRule from './components/GameRule';
 function App() {
   const [secretCodes, setSecretCodes] = React.useState([])
   const [currentRound, setCurrentRound] = React.useState(0)
   const [difficultyLevel, setLevel] = React.useState(4)
   const [stillGoing, setStillGoing] = React.useState(true)
   const [loading, setLoading] = React.useState(true)
+  const [gameRule, setGameRule] = React.useState(false)
 
   //todo: a restart btn to trigger new game --> new api call, empty form
   //adjust difficulty levels, more input field
@@ -125,7 +128,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className='nav'>Mastermind Game ⏳</h1>
+
+      <div className='nav'>
+        <button className='rule-btn' onClick={() => setGameRule((prev) => !prev)}>{gameRule ? "HIDE RULE" : "GAME RULE"}</button>
+        <h1>Mastermind Game ⏳</h1>
+        <Timer />
+
+      </div>
       <div className="btns">
         <button className="restart-btn" onClick={handleRestart}>Restart Game</button>
         <div className='level-btns'>
@@ -136,6 +145,7 @@ function App() {
 
       <div>{!stillGoing && <><b>You won!</b> Our secret code is {secretCodes}.</>}</div>
       <div>{formDetail.length === 10 && stillGoing && <>You lost! Our secret code is <b>{secretCodes}</b>.</>}</div>
+      <div>{gameRule && <GameRule />}</div>
       <h2>{secretCodes}</h2>
       {loading ? <h2 className='loading'>Loading...</h2> :
 
