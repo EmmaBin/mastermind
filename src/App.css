@@ -87,3 +87,16 @@ h1 {
   color: wheat;
   padding: 15px;
 }
+
+/* timer component */
+
+.timer {
+  background-color: #13678A;
+  color: wheat;
+  width: 80px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
