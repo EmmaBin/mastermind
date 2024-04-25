@@ -12,6 +12,7 @@ function App() {
   const [stillGoing, setStillGoing] = React.useState(true)
   const [loading, setLoading] = React.useState(true)
   const [gameRule, setGameRule] = React.useState(false)
+  const [stopTimer, setStopTimer] = React.useState(false)
 
   //todo: a restart btn to trigger new game --> new api call, empty form
   //adjust difficulty levels, more input field
@@ -46,6 +47,7 @@ function App() {
     dispatch({ type: "reset" });
     document.querySelectorAll(".inputField").forEach((input) => input.value = null)
     setStillGoing(true)
+    setStopTimer(false)
 
   }
 
@@ -70,6 +72,7 @@ function App() {
     if (correctLocation === difficultyLevel) {
       setStillGoing(false)
       setCurrentRound(-1)
+      setStopTimer(true)
     }
   }
 
@@ -97,11 +100,11 @@ function App() {
 
   return (
     <div className="App">
-
+      <h1>Mastermind Game ⏳</h1>
       <div className='nav'>
         <button className='rule-btn' onClick={() => setGameRule((prev) => !prev)}>{gameRule ? "HIDE RULE" : "GAME RULE"}</button>
-        <h1>Mastermind Game ⏳</h1>
-        <Timer restart={restart} />
+
+        <Timer restart={restart} stopTimer={stopTimer} difficultyLevel={difficultyLevel} />
       </div>
 
 
