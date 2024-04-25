@@ -16,6 +16,12 @@ h1 {
 .level-btns button {
   margin-bottom: 10px;
   margin-right: 10px;
+  background: none;
+  color: #13678A;
+  border: 1px solid #13678A;
+  border-radius: 30px;
+  padding: 8px 10px;
+  text-decoration: none;
 }
 
 .btns button:hover {
@@ -25,6 +31,13 @@ h1 {
 .restart-btn {
   font-size: 1.2rem;
   margin-bottom: 10px;
+  background: none;
+  color: #13678A;
+  border: 1px solid #13678A;
+  border-radius: 30px;
+
+  padding: 8px 10px;
+  text-decoration: none;
 }
 
 .loading {
@@ -39,4 +52,12 @@ h1 {
 
 .submit-btn {
   margin-left: 5px;
+}
+
+
+
+/* result component */
+.number {
+  font-weight: 600;
+  color: #13678A;
 }

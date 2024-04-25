@@ -134,8 +134,8 @@ function App() {
         </div>
       </div>
 
-      <div>{!stillGoing && <>You won! Our secret code is {secretCodes}</>}</div>
-      <div>{formDetail.length === 10 && stillGoing && <>You lost! Our secret code is {secretCodes}</>}</div>
+      <div>{!stillGoing && <><b>You won!</b> Our secret code is {secretCodes}.</>}</div>
+      <div>{formDetail.length === 10 && stillGoing && <>You lost! Our secret code is <b>{secretCodes}</b>.</>}</div>
       <h2>{secretCodes}</h2>
       {loading ? <h2 className='loading'>Loading...</h2> :
 

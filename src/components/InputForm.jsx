@@ -1,6 +1,7 @@
 
 import * as React from 'react';
 import '../App.css';
+import Result from './Result'
 export default function InputForm({ index, handleSubmit, currentRound, difficultyLevel }) {
 
 
@@ -27,9 +28,8 @@ export default function InputForm({ index, handleSubmit, currentRound, difficult
                 }
                 <button type="submit" disabled={isDisabled} className='submit-btn'>Submit</button>
                 <div> {showResult ?
-                    <h5>
-                        You have {correctNumber} correct numbers and {correctLocation} correct locations
-                    </h5> : null}</div>
+                    <Result correctLocation={correctLocation} correctNumber={correctNumber} />
+                    : null}</div>
 
             </form >
         </div >
