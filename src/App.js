@@ -14,14 +14,7 @@ function App() {
   const [gameRule, setGameRule] = React.useState(false)
   const [stopTimer, setStopTimer] = React.useState(false)
 
-  //todo: a restart btn to trigger new game --> new api call, empty form
-  //adjust difficulty levels, more input field
-  //basic UI, bold on hints
-  //track least time used on different levels,
-  //how to play instructions
-  //music
-  //number(s) location(s)
-  //testing
+
   const reducer = (formDetail, action) => {
     if (action.type === "reset") {
       return [];
@@ -57,7 +50,6 @@ function App() {
     const newForm = new FormData(e.target)
     // using ... turn the iterators into arr
     const currentGuess = [...newForm.values()]
-    //if previous round is not being answered/checked, user should not go to next round
     if (currentGuess.length === difficultyLevel) {
       dispatch({ type: "append", currentGuess: currentGuess })
       setCurrentRound((prev) => prev + 1)
@@ -119,7 +111,7 @@ function App() {
       <div>{!stillGoing && <><b>You won!</b> Our secret code is {secretCodes}.</>}</div>
       <div>{formDetail.length === 10 && stillGoing && <>You lost! Our secret code is <b>{secretCodes}</b>.</>}</div>
       <div>{gameRule && <GameRule />}</div>
-      <h2>{secretCodes}</h2>
+      {/* <h2>{secretCodes}</h2> */}
 
 
 
