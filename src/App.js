@@ -103,7 +103,6 @@ function App() {
       <h1>Mastermind Game ⏳</h1>
       <div className='nav'>
         <button className='rule-btn' onClick={() => setGameRule((prev) => !prev)}>{gameRule ? "HIDE RULE" : "GAME RULE"}</button>
-
         <Timer restart={restart} stopTimer={stopTimer} difficultyLevel={difficultyLevel} />
       </div>
 
