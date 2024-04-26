@@ -24,7 +24,7 @@ Mastermind is a code-breaking game played against the computer. Players can choo
 ## Future Improvements
 - Display Game Result with Popup
 - Visual Representation using Pegs instead of numbers
-- Transition to a full-stack application with a backend database data persistence
+- Transition to a full-stack application with a backend data persistence
 
 ## To run the code
 - Download this repository
