@@ -14,6 +14,18 @@ describe("fetch codes from API", () => {
         expect(fetch).toHaveBeenCalledTimes(1)
         expect(fetch).toHaveBeenCalledWith(`https://www.random.org/integers/?num=${counts}&min=0&max=7&col=1&base=10&format=plain&rnd=new`);
     })
+
+    it("should return null to handle error", async () => {
+        global.fetch = jest.fn().mockResolvedValueOnce("API Error")
+
+        const result = await getCodes(5)
+
+        expect(result).toEqual(null)
+        expect(fetch).toHaveBeenCalledWith('https://www.random.org/integers/?num=5&min=0&max=7&col=1&base=10&format=plain&rnd=new');
+
+    })
+
+
 })
 
 

@@ -5,11 +5,12 @@ export default async function getCodes(counts) {
         //get string format
         const data = await response.text();
         if (data.includes("Error:")) {
-            console.error("Error occurred", data)
+
+            return null
         }
         console.log(data.split("\n").slice(0, counts))
         return data.split("\n").slice(0, counts)
     } catch (err) {
-        console.error(err.message)
+        return null
     }
 }
