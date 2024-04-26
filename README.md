@@ -28,9 +28,8 @@ Mastermind is a code-breaking game played against the computer. Players can choo
 
 ## To run the code
 - Download this repository
-- ``` npm install
-      npm start
-  ```
+- ``` npm install```
+- ``` npm start```
 - go to http://localhost:3000/ in your browser
 
 
