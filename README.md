@@ -24,13 +24,13 @@ Mastermind is a code-breaking game played against the computer. Players can choo
 ## Future Improvements
 - Display Game Result with Popup
 - Visual Representation using Pegs instead of numbers
-- Transition to a full-stack application with a backend database for enhanced functionality and data persistence
+- Transition to a full-stack application with a backend database data persistence
 
 ## To run the code
 - Download this repository
 - ``` npm install```
 - ``` npm start```
-- go to http://localhost:3000/ in your browser
+- Go to http://localhost:3000/ in your browser
 
 
 ## Game Overview
