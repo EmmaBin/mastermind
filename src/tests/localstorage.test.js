@@ -7,15 +7,15 @@ import ScoreBoard from '../components/ScoreBoard'
 describe('ScoreBoard component', () => {
     beforeEach(() => {
 
-        localStorage.clear();
-        localStorage.setItem('4', '30');
-        localStorage.setItem('5', '45');
-        localStorage.setItem('6', '60');
+        localStorage.clear()
+        localStorage.setItem('4', '30')
+        localStorage.setItem('5', '45')
+        localStorage.setItem('6', '60')
     })
 
     afterEach(() => {
 
-        localStorage.clear();
+        localStorage.clear()
     })
 
     it('displays best performance from localStorage', () => {

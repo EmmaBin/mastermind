@@ -35,6 +35,11 @@ Mastermind is a code-breaking game played against the computer. Players can choo
 
 ## Game Overview
 
-![Game Overview](/src/images/mastermind_play.png)
+![Game Overview](/src/images/mastermind_overview.png)
 ![Game Instruction](/src/images/game_rule.png)
 ![Wining a game](/src/images/game_win.png)
+
+
+## About Me
+
+[Portfolio](https://www.emmacancode.com/)
