@@ -2,9 +2,9 @@
 
 Mastermind is a code-breaking game played against the computer. Players can choose from three difficulty levels to guess a combination of 4, 5, or 6 numbers.
 
-![](/src/images/mastermind_play)
-![](/src/images/game_rule)
-![](/src/images/game_win)
+![Game Overview](/src/images/mastermind_play.png)
+![Game Instruction](/src/images/game_rule.png)
+![Wining a game](/src/images/game_win.png)
 
 ## Technologies Used
 
@@ -21,7 +21,7 @@ Mastermind is a code-breaking game played against the computer. Players can choo
 - Restart Game Option
 - Game Instruction
 - Three Difficulty Levels
-- Track Least Time Used to win a game at each difficulty level.
+- Track Least Time Used to win a game at each difficulty level
 - Testing with Jest
 
 ## Future Improvements
